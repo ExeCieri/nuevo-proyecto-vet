@@ -1,0 +1,7 @@
+.titulo{color: red;}
+
+#catalogo{background-color: blueviolet;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}
