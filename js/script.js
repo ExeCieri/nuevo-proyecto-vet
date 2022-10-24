@@ -88,6 +88,7 @@ let listaNombres = listaProductosConStock.map((prod) => prod.nombre)
 
 let catalogo = document.getElementById("catalogo")
 
+
 function render (lista){
     catalogo.innerHTML = ""
 
@@ -95,9 +96,12 @@ function render (lista){
 
     let card = document.createElement("div")
     card.className = "card"
-    card.innerHTML = `<H2>${prod.nombre}</H2><p>precio:$${prod.precio}</p> <img src= ${prod.img}> </img>`
+    card.innerHTML = `<H2>${prod.nombre}</H2><p>precio:$${prod.precio}</p> <img src= ${prod.img}> </img><button>Comprar</button>`
+    
     catalogo.append(card)}
+    
 }
+
 // ----------NO PUEDO MOSTRAR TODOS LOS PRODUCTOS JUNTOS SIN CLASIFICARLOS POR SU CATEGORIA------------------
 
 render (listaProductosConStock)
@@ -109,15 +113,16 @@ render(filtroActual)
 
 // alert("estos son nuestros productos:  \n - " + listaNombres.join("\n -"))
 
-// let cantidadCompra = prompt("que cantidad de productos distintos quiere comprar")
+// let cantidadCompra = parseInt(prompt("que cantidad de productos distintos quiere comprar")) || 0
 
 
 
 function calculoPrecio(cantidad, precio){
     precioTotal += (cantidad * precio)
 }
-
-function calculstock(cantidad, stock, precio){
+// -----utilizando desestructuracion unificando stock y precio dentro de la funcion-------
+function calculstock(cantidad, producto){
+    let {stock, precio} = producto
     if(cantidad <= stock){
         calculoPrecio(cantidad, precio)
    }
@@ -132,33 +137,33 @@ for (let i = 0; i < cantidadCompra; i = i + 1){
     let productoCompra = prompt("ingrese que productos quiere comprar:\n - performance \n - eukanuba \n - proplan \n - performance junior \n - excellent \n -puppy")
 
     if (productoCompra == "performance"){
-        let cantidadProductoPerformance = prompt("ingrese que cantidad de " + productoA.nombre + " desea comprar")     
-       calculstock(cantidadProductoPerformance, productoA.stock, productoA["precio"])
+        let cantidadProductoPerformance = parseInt(prompt("ingrese que cantidad de " + productoA.nombre + " desea comprar")) || 1     
+       calculstock(cantidadProductoPerformance, productoA)
        productoA.restarStock(cantidadProductoPerformance)
     }
     else if (productoCompra == "eukanuba"){
-        let cantidadProductoB = prompt("ingrese que cantidad de " + productoB.nombre + " desea comprar")
-        calculstock (cantidadProductoB, productoB.stock, productoB["precio"])
+        let cantidadProductoB = parseInt(prompt("ingrese que cantidad de " + productoB.nombre + " desea comprar")) || 1 
+        calculstock (cantidadProductoB, productoB)
         productoB.restarStock(cantidadProductoB)
     }
     else if (productoCompra == "proplan"){
-        let cantidadProductoC = prompt("ingrese que cantidad de " + productoC.nombre + " desea comprar")
-        calculstock(cantidadProductoC, productoC.stock, productoC["precio"])
+        let cantidadProductoC = parseInt(prompt("ingrese que cantidad de " + productoC.nombre + " desea comprar")) || 1 
+        calculstock(cantidadProductoC, productoC)
         productoC.restarStock(cantidadProductoC) 
     }
     else if(productoCompra == "performance junior"){
-        let cantidadProductoD = prompt ("ingrese que cantidad de " + productoD.nombre + " desea comprar")
-       calculstock(cantidadProductoD, productoD.stock, productoD["precio"])
+        let cantidadProductoD = parseInt(prompt ("ingrese que cantidad de " + productoD.nombre + " desea comprar")) || 1 
+       calculstock(cantidadProductoD, productoD)
        productoD.restarStock(cantidadProductoD)
     }
     else if (productoCompra == "excellent"){
-            let cantidadProductoE = prompt ( "ingrese que cantidad de " + productoE.nombre + " desea comprar")
-        calculstock(cantidadProductoE, productoE.stock, productoE["precio"])
+            let cantidadProductoE = parseInt(prompt ( "ingrese que cantidad de " + productoE.nombre + " desea comprar")) || 1 
+        calculstock(cantidadProductoE, productoE)
         productoE.restarStock(cantidadProductoE)
     }
     else if (productoCompra == "puppy"){
         let cantidadProductoF = prompt ( "ingrese que cantidad de " + productoF.nombre + " desea comprar")
-    calculstock(cantidadProductoF, productoF.stock, productoF["precio"])
+    calculstock(cantidadProductoF, productoF)
     productoF.restarStock(cantidadProductoF)
     }
 
@@ -166,8 +171,20 @@ for (let i = 0; i < cantidadCompra; i = i + 1){
     alert("no tenemos ese producto en venta")
     }
 }
-if(precioTotal != 0){
-    alert("el precio total es:" + precioTotal)
-}
 
-alert("Gracias por su visita")
+// --------------FORMA COMPLETA DE ESCRIBIRLO-------------
+// if(precioTotal != 0){
+//     alert("el precio total es:" + precioTotal)
+// }
+// else {
+//     alert("Gracias por su visita")
+// }
+
+// ----------------"EJEMPLO DE UN (OPERADOR TERNARIO)"-----------
+(precioTotal != 0) ?  alert("el precio total es:" + precioTotal) : alert("Gracias por su visita")
+
+
+
+
+
+
