@@ -21,3 +21,12 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 .el{background-color: blueviolet;
     height: 100px;
     width: 100px;}
+    
+    .chango{
+        height: 50px;
+    }
+    .carritoo{
+        display: flex;
+        justify-content: space-around;
+        
+    }
