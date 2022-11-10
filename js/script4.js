@@ -1,5 +1,3 @@
-
-
 function Producto(id, nombre, precio, stock, cat, img){
     this.id = id;
     this.nombre = nombre;
@@ -23,18 +21,9 @@ let listaProductos = [productoA, productoB, productoC, productoD, productoE, pro
 let listaProductosConStock = listaProductos.filter((prod) => prod.stock > 0)
 let listaNombres = listaProductosConStock.map((prod) => prod.nombre)
 
+
+
 let catalogo = document.getElementById("catalogo")
-let carritoC = document.getElementById("carrito")
-let botonVacia = document.getElementById("vaciar")
-// let botonAgregar = document.getElementById("Agregar")
-let carrito = []
-let botonVaciar = document.getElementById("vaciarCarro")
-    botonVaciar = addEventListener("click", () => {
-    carrito.length = 0
-    actualizarCarrito()
-})
-
-
 
 listaProductos.forEach((prod) => {
     
@@ -50,45 +39,4 @@ listaProductos.forEach((prod) => {
 
     
     catalogo.append(card)
-    
-    
-    // const botonAgregar = document.getElementById("Agregar${prod.id}")
-    // boton.addEventListener("click", () =>{
-    //     agregarAlCarrito(prod.id)
-    // })
-}
-)
-
-
-botonAgregar.setAttribute("mark", prod.id)
-botonAgregar.addEventListener("click", agregarAlCarrito)
-
-function botonAgregar(event){
-    carrito.push(event.target.getAttribute('mark'))
-    renderCart()
-    console.log(carrito)
-    
-}
-
-const agregarAlCarrito = (prodId) => {
-  let item = listaProductosConStock.find((prod)=> prod.id === prodId)
-  carrito.push(item)
-
-  Toastify({
-    text: "Agregaste correctamente el producto id: ${id} al carrito,",
-    className: "info",
-    style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
-    }
-  }).showToast();
-}
-function actualizarCarrito(){
-
-catalogo.innerHTML = ""
-  
-}
-// anime({
-//     targets: ".el",
-//     translateX: 250,
-//     duration: 3000
-//   });
+})

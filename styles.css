@@ -1,4 +1,15 @@
-.titulo{color: red;}
+*{margin: 0%;
+padding: 0%;
+box-sizing: border-box;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+.titulo{background-color: red;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 80px;
+    align-items: center;}
+
 
 #catalogo{background-color: blueviolet;
     color: white;
@@ -7,4 +18,6 @@
 }
 .botonVaciar{color: white;
     background-color: red;}
-
+.el{background-color: blueviolet;
+    height: 100px;
+    width: 100px;}
